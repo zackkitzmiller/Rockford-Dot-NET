@@ -410,12 +410,104 @@
 </section>
 
 <section class="slide" id="vi-branching-ii">
-
   <h2>branching</h2>
 
+  <h3>creating branches</h3>
 
+  <p>we can create another 'branch' of the codebase with the checkout command</p>
+
+  <pre class="slide">
+    <code>
+      $ git checkout -b part-two
+    </code>
+  </pre>
+
+  <div class="slide">
+    <p>we can push this branch to github with git push</p>
+
+    <pre>
+      <code>
+        $ git push origin part-two
+      </code>
+    </pre>
+  </div>
+
+  <p class="slide">let's create a bunch of branches and play around</p>
+</section>
+
+<section class="slide" id="vi-branching-cherry">
+  <h2>branching</h2>
+  <h3>cherry-picking</h3>
+
+  <p>cherry picking allows us to grab a commit from a different branch, even if it's out of order</p>
+  <p>this is helpful for keeping bug-fixes aligned across two separate versions of software</p>
+
+  <pre class="slide">
+    <code>
+      $ git checkout master
+      .. EDIT JS
+      $ git add .
+      $ git commit -m 'edited js'
+      [master e466ea1] edited js
+       1 files changed, 2 insertions(+), 0 deletions(-)
+      $ git checkout part-two
+      Switched to branch 'part-two'
+      $ git cherry-pick e466ea1
+      [part-two 481d3d3] edited js
+       1 files changed, 2 insertions(+), 0 deletions(-)
+    </code>
+  </pre>
 
 </section>
+
+<section class="slide" id="merging-branches">
+  <h2>merging branches</h2>
+
+  <p>eventually we want to merge our branches together</p>
+
+  <pre class="slide">
+    <code>
+      $ git merge BRANCH
+    </code>
+  </pre>
+
+  <p class="slide">of course, there is always the possibility of a merge conflict here</p>
+</section>
+
+<section class="slide" id="merging-remotes">
+  <h2>merging remotes</h2>
+
+  <p>when we're working with a team, we want to merge in the team member's changes</p>
+
+  <pre class="slide">
+    <code>
+      $ git fetch
+
+      $ git branch -a
+        master
+      * part-two
+        remotes/origin/master
+        remotes/origin/part-two
+    </code>
+  </pre>
+
+  <p class="slide">of course, there is always the possibility of a merge conflict here</p>
+</section>
+
+
+<section class="slide" id="ix-fixing-mistages">
+  <h2>fixing mistakes</h2>
+
+  <p>multiple ways to fix various mistakes</p>
+
+</section>
+
+
+
+
+
+
+
 
 
 
