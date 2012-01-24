@@ -526,13 +526,111 @@
 </section>
 
 
-<section class="slide">
+<section class="slide" id="x-deploys-i">
+  <h2>deploying</h2>
+
+  <p>easy as <code>git pull</code> or <code>git merge</code></p>
+
+  <pre>
+    <code>
+      THIS SLIDE INTENTIONALLY BLANK-ISH
+    </code>
+  </pre>
+
 </section>
 
+<section class="slide" id="xi-hooks-i">
+  <h2>hooks</h2>
+  <h3>all hooks (except post-receive)</h3>
+</section>
 
+<section class="slide" id="xi-hooks-i">
+  <h2>hooks</h2>
 
+  <p>git provides us with various hooks</p>
 
+  <pre class="slide">
+    <code>
+      applypatch-msg
+      commit-msg
+      post-commit
+      post-update
+      pre-applypatch
+      pre-commit
+      pre-rebase
+      prepare-commit-msg
+      update
+    </code>
+  </pre>
 
+  <p class="slide">pre-commit is probably the most common</p>
+</section>
+
+<section class="slide" id="xi-hooks-ii">
+  <h2>hooks</h2>
+
+  <h3>pre-commit example</h3>
+
+  <pre class="slide">
+    <code>
+      #!/bin/bash
+      git diff-index --cached --name-only -M HEAD | grep -i "\.php$" |
+      php --run '
+      $found_bad = 0;
+      foreach (file("php://stdin") as $fn) {
+          if (preg_match("/parse error/i", `php --no-php-ini -l {$fn}`)) {
+              $found_bad = 1;
+              echo "You have a syntax error in: {$fn}";
+          }
+      }
+      exit($found_bad);
+      '
+    </code>
+  </pre>
+
+  <p class="slide">pre-commit is probably the most common</p>
+</section>
+
+<section class="slide" id="xi-hooks-ii">
+  <h2>hooks</h2>
+
+  <h3>post-receive</h3>
+
+  <p>github allows us to set a post-receive url they send JSON to.</p>
+
+  <pre class="slide">
+    <code>
+      {
+        "before": "5aef35982fb2d34e9d9d4502f6ede1072793222d",
+        "repository": {
+          ... REPO INFO
+        },
+        "commits": [
+          {
+            "id": "41a212ee83ca127e3c8cf465891ab7216a705f59",
+            "url": "http://github.com/defunkt/github/commit/41a212ee83ca127e3c8cf465891ab7216a705f59",
+            "author": {
+              "email": "chris@ozmm.org",
+              "name": "Chris Wanstrath"
+            },
+            "message": "okay i give in",
+            "timestamp": "2008-02-15T14:57:17-08:00",
+            "added": ["filepath.rb"]
+          },
+          ... multiple commits possible
+        ],
+        "after": "de8251ff97ee194a289832576287d6f8ad74e3d0",
+        "ref": "refs/heads/master"
+      }
+    </code>
+  </pre>
+</section>
+
+<section class="slide">
+  <h2>that's all, yo</h2>
+
+  <h3>Questions?</h3>
+</section>
 
 
 
