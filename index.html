@@ -498,12 +498,36 @@
 <section class="slide" id="ix-fixing-mistages">
   <h2>fixing mistakes</h2>
 
-  <p>multiple ways to fix various mistakes</p>
-
+  <ul>
+    <li class="slide">
+      reset
+      <br/>
+      &mdash; for <b>uncommitted</b>, but staged, files
+      <pre>
+        <code>
+          $ git reset --hard HEAD^
+          $ git reset --soft HEAD~3
+        </code>
+      </pre>
+    </li>
+    <li class="slide">
+      revert
+      <br/>
+      &mdash; for <b>committed</b> files
+      <pre>
+        <code>
+          $ git revert HEAD^
+          $ git revert HEAD~3
+        </code>
+      </pre>
+      <p>creates a new commit in front of the mistake commit</p>
+    </li>
+  </ul>
 </section>
 
 
-
+<section class="slide">
+</section>
 
 
 
