@@ -410,14 +410,44 @@
 </section>
 
 <section class="slide" id="vi-branching-ii">
-
   <h2>branching</h2>
 
+  <h3>creating branches</h3>
 
+  <p>we can create another 'branch' of the codebase with the checkout command</p>
 
+  <pre class="slide">
+    <code>
+      $ git checkout -b part-two
+    </code>
+  </pre>
+
+  <div class="slide">
+    <p>we can push this branch to github with git push</p>
+
+    <pre>
+      <code>
+        $ git push origin part-two
+      </code>
+    </pre>
+  </div>
+
+  <p class="slide">let's create a bunch of branches and play around</p>
 </section>
 
+<section class="slide" id="vi-branching-cherry">
+  <h2>branching</h2>
+  <h3>cherry-picking</h3>
 
+  <pre>
+    <code>
+      $ git checkout master
+      .... MAKE CHANGES
+      $ git checkout part-two
+    </code>
+  </pre>
+
+</section>
 
 
   <!-- Grab CDN jQuery, with a protocol relative URL; fall back to local if offline -->
