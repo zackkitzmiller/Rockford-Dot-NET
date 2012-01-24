@@ -154,8 +154,57 @@
 
 </section>
 
+<section class="slide" id="xiv-huh">
+  <h2>git at a glance</h2>
+
+  <ul>
+    <li class="slide">
+      snapshots vs. diffs/patches
+      </br>
+      &mdash; note: if there is no file delta, a reference to previous commit is used
+    </li>
+    <li class="slide">no server required</li>
+    <li class="slide">
+      hard to break
+    </br>
+    &mdash; experiment!
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="xiv-huh-1">
+  <h2>git at a glance</h2>
+
+  <h3>3 states of files</h3>
+
+  <ul>
+    <li class="slide">modified</li>
+    <li class="slide">staged</li>
+    <li class="slide">committed</li>
+  </ul>
+
+  <pre class="slide">
+    <code>
+      $ git status
+      # On branch master
+      # Changes to be committed:
+      #   (use "git reset HEAD <file>..." to unstage)
+      #
+      #	modified:   introduction.js
+      #
+      # Changes not staged for commit:
+      #   (use "git add <file>..." to update what will be committed)
+      #   (use "git checkout -- <file>..." to discard changes in working directory)
+      #
+      #	modified:   index.html
+      #
+    </code>
+  </pre>
+</section>
+
+
 <section class="slide" id="iv-basics">
-  <h2>getting started, for real this time</h2>
+  <h2>getting started</h2>
 
   <h3>creating repos</h3>
 
@@ -212,7 +261,7 @@
 
   <pre>
     <code>
-      $ git clone git@github.com:zackkitzmiller/Rockford-Dot-NET.git rockforddn
+      $ git clone git@github.com:zackkitzmiller/Rockford-Dot-NET.git rfd-test
     </code>
   </pre>
 
@@ -221,11 +270,153 @@
 
   <pre class="slide">
     <code>
-
+      $ cd rfd-test
+      $ ls -la
+      drwxr-xr-x  10 zackkitzmiller  staff   340 Jan 24 16:27 .
+      drwxr-xr-x  71 zackkitzmiller  staff  2414 Jan 24 16:27 ..
+      -rw-r--r--   1 zackkitzmiller  staff  6148 Jan 24 16:27 .DS_Store
+      drwxr-xr-x  13 zackkitzmiller  staff   442 Jan 24 16:27 .git
+      -rw-r--r--   1 zackkitzmiller  staff     5 Jan 24 16:27 README
+      drwxr-xr-x   8 zackkitzmiller  staff   272 Jan 24 16:27 assets
+      -rwxr-xr-x   1 zackkitzmiller  staff  6588 Jan 24 16:27 index.html
+      -rwxr-xr-x   1 zackkitzmiller  staff   992 Jan 24 16:27 introduction.css
+      -rwxr-xr-x   1 zackkitzmiller  staff   275 Jan 24 16:27 introduction.js
+      -rwxr-xr-x   1 zackkitzmiller  staff   888 Jan 24 16:27 introduction.scss
     </code>
   </pre>
 
 </section>
+
+<section class="slide" id="iv-basics-4">
+
+  <h3>fork</h3>
+
+  <p>forking a project will duplicate the project in a new repo, not linked to the original author</p>
+
+  <a href="http://github.com" target="_blank">let's do this one on github</a>
+</section>
+
+<section class="slide" id="v-adding-1">
+
+  <h2>workflows</h2>
+
+  <h3>adding files</h3>
+
+  <p>after working in a directory, we can check the status of our repo with git status</p>
+
+  <pre class="slide">
+    <code>
+      $ git status
+      # On branch master
+      # Changes to be committed:
+      #   (use "git reset HEAD <file>..." to unstage)
+      #
+      #	modified:   introduction.js
+      #
+      # Changes not staged for commit:
+      #   (use "git add <file>..." to update what will be committed)
+      #   (use "git checkout -- <file>..." to discard changes in working directory)
+      #
+      #	modified:   index.html
+      #
+    </code>
+  </pre>
+
+  <p class="slide">here we can see that we have 1 staged file, and one modified file that has not been staged</p>
+
+</section>
+
+<section class="slide" id="v-adding-2">
+
+  <h2>workflows</h2>
+  <h3>adding files</h3>
+
+  <p>before we can commit index.html, we need to add it to the staging area</p>
+
+  <pre class="slide">
+    <code>
+      $ git add index.html
+    </code>
+  </pre>
+
+  <pre class="slide">
+    <code>
+      $ git add .
+    </code>
+  </pre>
+
+  <pre class="slide">
+    <code>
+      $ git add app/
+    </code>
+  </pre>
+
+</section>
+
+<section class="slide" id="v-gitignore">
+  <h2>workflows</h2>
+
+  <h3>ignoring files</h3>
+
+  <p>sometimes we want to ignore certain files, like logs</p>
+
+  <pre class="slide">
+    <code>
+      $ touch .gitignore
+      $ echo 'logs/' > .gitignore
+      $ mkdir logs
+      $ git status
+      # On branch master
+      # Changes to be committed:
+      #   (use "git reset HEAD <file>..." to unstage)
+      #
+      #	modified:   introduction.js
+      #
+      # Changes not staged for commit:
+      #   (use "git add <file>..." to update what will be committed)
+      #   (use "git checkout -- <file>..." to discard changes in working directory)
+      #
+      #	modified:   index.html
+      #
+      # Untracked files:
+      #   (use "git add <file>..." to include in what will be committed)
+      #
+      #	.gitignore
+    </code>
+  </pre>
+
+</section>
+
+<section class="slide" id="v-diff-push">
+  <h2>workflows</h2>
+
+  <h3>push to git hub</h3>
+
+  <p>couldn't be easier
+
+  <pre class="slide">
+    <code>
+      $ git push origin master
+    </code>
+  </pre>
+</section>
+
+<section class="slide" id="vi-branching-i">
+  <h2>branching</h2>
+
+  <img src="assets/images/git-history.png" />
+
+  <p>note: i stole this image</p>
+</section>
+
+<section class="slide" id="vi-branching-ii">
+
+  <h2>branching</h2>
+
+
+
+</section>
+
 
 
 
